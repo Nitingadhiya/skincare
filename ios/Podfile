@@ -1,0 +1,8 @@
+platform :ios, '12.0'
+
+
+target 'Runner' do
+  use_frameworks!
+
+  pod 'PerfectLibSkinCarePlus', :path => '/Users/mac/code/skincare_demo/ios/PerfectLibSkinCarePlus.podspec'  # Ensure this name and version are correct
+end
