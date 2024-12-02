@@ -1,145 +1,270 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const CameraView(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
+class CameraView extends StatefulWidget {
+  const CameraView({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<CameraView> createState() => _CameraViewState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+class _CameraViewState extends State<CameraView> {
+  static const MethodChannel _channel = MethodChannel('skincare_channel');
+  Map<String, String>? _skincareData;
+  String imagepath = "";
+  String lightingQuality_color = "#41474D";
+  String faceFrontalQuality_color = "#41474D";
+  String faceAreaQuality_color = "#41474D";
+  String? allSkinImage;
+  String lightingQuality = "";
+  String faceFrontalQuality = "";
+  String faceAreaQuality = "";
+  int? countDin;
+  @override
+  void initState() {
+    super.initState();
+    _setupMethodChannel();
+  }
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
+  Image? image;
+  List<Map<String, dynamic>> skinDataList = [];
+  void _setupMethodChannel() {
+    _channel.setMethodCallHandler((call) async {
+      if (call.method == "updateSkincareData") {
+        // Receiving data from iOS
+        final Map<dynamic, dynamic> result = call.arguments;
+        setState(() {
+          _skincareData = result.map((key, value) => MapEntry(key as String, value as String));
+          lightingQuality_color = _skincareData!["lightingQuality_color"]!;
+          faceFrontalQuality_color = _skincareData!["faceFrontalQuality_color"]!;
+          faceAreaQuality_color = _skincareData!["faceAreaQuality_color"]!;
+          lightingQuality = _skincareData!["lightingQuality"]!;
+          faceFrontalQuality = _skincareData!["faceFrontalQuality"]!;
+          faceAreaQuality = _skincareData!["faceAreaQuality"]!;
+          setState(() {});
+        });
+      } else if (call.method == "updateSkincareData1") {
+        Map<String, int> reportDict = Map<String, int>.from(call.arguments["skincareReportDict"]);
+        Map<String, String> selectedImageList = Map<String, String>.from(call.arguments["selectedSkinImageList"]);
+        print("Received Skincare Report: $selectedImageList");
+        final base64Image = call.arguments['imageBase64'];
+        allSkinImage = call.arguments["allSkinImage"];
+        // Decode base64 image to display or save it
+        final imageBytes = base64Decode(base64Image);
+        image = Image.memory(
+          Uint8List.fromList(imageBytes),
+          height: 200,
+          width: 200,
+        );
+        print("Received Skincare Report: $reportDict");
+        skinDataList = reportDict.entries.map((entry) {
+          return {
+            "key": entry.key,
+            "value": entry.value,
+            "image": "",
+          };
+        }).toList();
+        selectedImageList.entries.forEach((entry) {
+          for (var e in skinDataList) {
+            if (e["key"] == entry.key) {
+              e["image"] = entry.value; // Update the image
+            }
+          }
+        });
+        countDin = null;
+        setState(() {});
+        // Get.back();
+      } else if (call.method == "updateSkincareData2") {
+        countDin = call.arguments["countDownValue"];
+        setState(() {});
+      }
     });
   }
 
-  @override
-  void initState() {
-    SkinCareService().someMethod();
-    super.initState();
+  Color hexToColor(String hexString) {
+    final buffer = StringBuffer();
+    if (hexString.length == 6 || hexString.length == 7) {
+      buffer.write('ff'); // Add full opacity if missing
+    }
+    buffer.write(hexString.replaceFirst('#', ''));
+    return Color(int.parse(buffer.toString(), radix: 16));
   }
-
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
+      appBar: AppBar(title: const Text("Camera View")),
       body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
+        child: skinDataList.isEmpty
+            ? Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Center(
+                    child: SizedBox(
+                      height: 200,
+                      width: 200,
+                      child: UiKitView(
+                        viewType: 'skincare_camera_view', // Registered in iOS native code
+                        onPlatformViewCreated: (int id) async {
+                          // Initialize the view using a method channel
+                          const channel = MethodChannel('skincare_camera');
+                          var data = await channel.invokeMethod('initializeView', {'viewId': id});
+                          print("-----${data}");
+                        },
+                      ),
+                    ),
+                  ),
+                  if (countDin != null)
+                    Text(
+                      "$countDin",
+                      style: const TextStyle(fontSize: 40),
+                    ),
+                  Row(
+                    children: [
+                      Text(lightingQuality.isNotEmpty ? lightingQuality : "Lighting"),
+                      const SizedBox(width: 10),
+                      Container(
+                          height: 30,
+                          width: 30,
+                          decoration: BoxDecoration(
+                            color: hexToColor(lightingQuality_color),
+                            borderRadius: BorderRadius.circular(100),
+                          ))
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Text(faceFrontalQuality.isNotEmpty ? faceFrontalQuality : "Face Frontal"),
+                      const SizedBox(width: 10),
+                      Container(
+                        height: 30,
+                        width: 30,
+                        decoration: BoxDecoration(
+                          color: hexToColor(faceFrontalQuality_color),
+                          borderRadius: BorderRadius.circular(100),
+                        ),
+                      )
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Text(faceAreaQuality.isNotEmpty ? faceAreaQuality : "Face Area"),
+                      const SizedBox(width: 10),
+                      Container(
+                          height: 30,
+                          width: 30,
+                          decoration: BoxDecoration(
+                            color: hexToColor(faceAreaQuality_color),
+                            borderRadius: BorderRadius.circular(100),
+                          ))
+                    ],
+                  )
+                ],
+              )
+            : Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SizedBox(
+                      height: 100, // Fixed height for the scrollable area
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                imagepath = allSkinImage ?? "";
+                                setState(() {});
+                              },
+                              child: Card(
+                                margin: const EdgeInsets.symmetric(horizontal: 8.0),
+                                child: Container(
+                                  padding: const EdgeInsets.all(16.0),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      const Text("All", style: TextStyle(fontWeight: FontWeight.bold)),
+                                      const SizedBox(height: 8),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                            // Wrap ListView.builder with a SizedBox for proper constraints
+                            SizedBox(
+                              height: 100, // Match the height of the scrollable area
+                              child: ListView.builder(
+                                scrollDirection: Axis.horizontal, // Horizontal ListView
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: skinDataList.length,
+                                shrinkWrap: true,
+                                itemBuilder: (context, index) {
+                                  var skinData = skinDataList[index];
+                                  return InkWell(
+                                    onTap: () {
+                                      imagepath = skinData["image"];
+                                      setState(() {});
+                                    },
+                                    child: Card(
+                                      margin: const EdgeInsets.symmetric(horizontal: 8.0),
+                                      child: Container(
+                                        padding: const EdgeInsets.all(16.0),
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Text(skinData['key'], style: const TextStyle(fontWeight: FontWeight.bold)),
+                                            const SizedBox(height: 8),
+                                            Text('${skinData['value']}', style: const TextStyle(fontSize: 20)),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    if (image != null) image!,
+                    if (imagepath.isNotEmpty)
+                      Image.file(
+                        File(imagepath),
+                        height: 300,
+                        width: 300,
+                        fit: BoxFit.contain,
+                      ),
+                  ],
+                ),
+              ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
-  }
-}
-
-class SkinCareService {
-  static const MethodChannel _channel = MethodChannel('skincare_camera');
-
-  Future<void> someMethod() async {
-    try {
-      await _channel.invokeMethod('openCamera');
-    } on PlatformException catch (e) {
-      print("Failed to open camera: '${e.message}'.");
-    }
   }
 }

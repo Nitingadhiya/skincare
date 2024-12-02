@@ -1,8 +1,16 @@
 platform :ios, '12.0'
 
-
 target 'Runner' do
-  use_frameworks!
+  pod 'PerfectLibSkinCarePlus', :path => '/Users/mac/code/skincare_demo/ios/PerfectLibSkinCarePlus.podspec'
 
-  pod 'PerfectLibSkinCarePlus', :path => '/Users/mac/code/skincare_demo/ios/PerfectLibSkinCarePlus.podspec'  # Ensure this name and version are correct
+  # Ensure that 'use_frameworks!' is necessary; if not, comment it out
+  # use_frameworks!
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['APPLICATION_EXTENSION_API_ONLY'] = 'No'
+    end
+  end
 end

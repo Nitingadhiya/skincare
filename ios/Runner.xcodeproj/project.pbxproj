@@ -7,14 +7,68 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0406BC882C9C3641003896A9 /* PerfectLibSkinCarePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0406BC862C9C3634003896A9 /* PerfectLibSkinCarePlus.framework */; };
-		0406BC892C9C3641003896A9 /* PerfectLibSkinCarePlus.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0406BC862C9C3634003896A9 /* PerfectLibSkinCarePlus.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		045E7E532C9C27BD00D6CFD0 /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BABDE90BAD289E51BF27F976 /* Pods_Runner.framework */; };
+		040FAC5C2CF59B570087B97E /* PerfectLibHandlerCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040FAC562CF59B570087B97E /* PerfectLibHandlerCore.xcframework */; };
+		040FAC5D2CF59B570087B97E /* PerfectLibHandlerCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 040FAC562CF59B570087B97E /* PerfectLibHandlerCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		040FAC5E2CF59B570087B97E /* PerfectLibCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040FAC572CF59B570087B97E /* PerfectLibCore.xcframework */; };
+		040FAC5F2CF59B570087B97E /* PerfectLibCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 040FAC572CF59B570087B97E /* PerfectLibCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		040FAC602CF59B570087B97E /* PerfectLibFaceTrackingPlus.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040FAC582CF59B570087B97E /* PerfectLibFaceTrackingPlus.xcframework */; };
+		040FAC612CF59B570087B97E /* PerfectLibFaceTrackingPlus.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 040FAC582CF59B570087B97E /* PerfectLibFaceTrackingPlus.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		040FAC622CF59B570087B97E /* PerfectLibRecommendationHandler.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040FAC592CF59B570087B97E /* PerfectLibRecommendationHandler.xcframework */; };
+		040FAC632CF59B570087B97E /* PerfectLibRecommendationHandler.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 040FAC592CF59B570087B97E /* PerfectLibRecommendationHandler.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		040FAC642CF59B570087B97E /* PerfectLibSkinCarePlus.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040FAC5A2CF59B570087B97E /* PerfectLibSkinCarePlus.xcframework */; };
+		040FAC652CF59B570087B97E /* PerfectLibSkinCarePlus.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 040FAC5A2CF59B570087B97E /* PerfectLibSkinCarePlus.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		041CAF972CF86D310068C38F /* SkincareReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041CAF962CF86D310068C38F /* SkincareReportViewController.swift */; };
+		041CAF9D2CF86DC50068C38F /* PFRoundCornerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041CAF982CF86DC50068C38F /* PFRoundCornerView.swift */; };
+		041CAF9E2CF86DC50068C38F /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041CAF992CF86DC50068C38F /* SettingTableViewCell.swift */; };
+		041CAF9F2CF86DC50068C38F /* String+MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041CAF9A2CF86DC50068C38F /* String+MD5.swift */; };
+		041CAFA02CF86DC50068C38F /* UIImageView+Web.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041CAF9B2CF86DC50068C38F /* UIImageView+Web.swift */; };
+		041CAFA32CF86E120068C38F /* SkinCareProductListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041CAFA12CF86E120068C38F /* SkinCareProductListViewController.swift */; };
+		041CAFA42CF86E120068C38F /* SkincareSurveyFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041CAFA22CF86E120068C38F /* SkincareSurveyFormView.swift */; };
+		041CAFA92CF87BF60068C38F /* MemoryUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041CAFA52CF87BF60068C38F /* MemoryUtility.swift */; };
+		041CAFAA2CF87BF60068C38F /* SwiftExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041CAFA62CF87BF60068C38F /* SwiftExtension.swift */; };
+		041CAFAB2CF87BF60068C38F /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041CAFA72CF87BF60068C38F /* UIImage+Resize.swift */; };
+		041CAFAF2CF87C010068C38F /* SkinEmulationResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041CAFAC2CF87C010068C38F /* SkinEmulationResultViewController.swift */; };
+		041CAFB02CF87C010068C38F /* SkinEmulationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041CAFAD2CF87C010068C38F /* SkinEmulationViewController.swift */; };
+		049C54B22CF8232A0085987D /* SkincareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049C54B12CF8232A0085987D /* SkincareViewController.swift */; };
+		04E1AAF62CF6D546000D2851 /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = 04E1AAF52CF6D546000D2851 /* config.json */; };
+		04E1AB1D2CF6FF22000D2851 /* acne_20210507_blackhead.mnn in Resources */ = {isa = PBXBuildFile; fileRef = 04E1AAFF2CF6FF22000D2851 /* acne_20210507_blackhead.mnn */; };
+		04E1AB1E2CF6FF22000D2851 /* acne_20210507_inflammatory.mnn in Resources */ = {isa = PBXBuildFile; fileRef = 04E1AB002CF6FF22000D2851 /* acne_20210507_inflammatory.mnn */; };
+		04E1AB1F2CF6FF22000D2851 /* acne_20210507_whitehead.mnn in Resources */ = {isa = PBXBuildFile; fileRef = 04E1AB012CF6FF22000D2851 /* acne_20210507_whitehead.mnn */; };
+		04E1AB202CF6FF22000D2851 /* acne_exclude_hair_20210803.mnn in Resources */ = {isa = PBXBuildFile; fileRef = 04E1AB022CF6FF22000D2851 /* acne_exclude_hair_20210803.mnn */; };
+		04E1AB212CF6FF22000D2851 /* backlighting_net_20190808.bin in Resources */ = {isa = PBXBuildFile; fileRef = 04E1AB032CF6FF22000D2851 /* backlighting_net_20190808.bin */; };
+		04E1AB222CF6FF22000D2851 /* exposure_net_20190808.bin in Resources */ = {isa = PBXBuildFile; fileRef = 04E1AB042CF6FF22000D2851 /* exposure_net_20190808.bin */; };
+		04E1AB232CF6FF22000D2851 /* faceart_20180917.model in Resources */ = {isa = PBXBuildFile; fileRef = 04E1AB052CF6FF22000D2851 /* faceart_20180917.model */; };
+		04E1AB242CF6FF22000D2851 /* pose_20180530.mtnet in Resources */ = {isa = PBXBuildFile; fileRef = 04E1AB062CF6FF22000D2851 /* pose_20180530.mtnet */; };
+		04E1AB252CF6FF22000D2851 /* skin_age_model_20221209.mnn in Resources */ = {isa = PBXBuildFile; fileRef = 04E1AB072CF6FF22000D2851 /* skin_age_model_20221209.mnn */; };
+		04E1AB262CF6FF22000D2851 /* skin_age_spot_model_20200529.mnn in Resources */ = {isa = PBXBuildFile; fileRef = 04E1AB082CF6FF22000D2851 /* skin_age_spot_model_20200529.mnn */; };
+		04E1AB272CF6FF22000D2851 /* skin_dark_circle_model_20200308.mnn in Resources */ = {isa = PBXBuildFile; fileRef = 04E1AB092CF6FF22000D2851 /* skin_dark_circle_model_20200308.mnn */; };
+		04E1AB282CF6FF22000D2851 /* skin_dark_circle_v2_model_20210115.mnn in Resources */ = {isa = PBXBuildFile; fileRef = 04E1AB0A2CF6FF22000D2851 /* skin_dark_circle_v2_model_20210115.mnn */; };
+		04E1AB292CF6FF22000D2851 /* skin_eye_bag_model_20200617.mnn in Resources */ = {isa = PBXBuildFile; fileRef = 04E1AB0B2CF6FF22000D2851 /* skin_eye_bag_model_20200617.mnn */; };
+		04E1AB2A2CF6FF22000D2851 /* skin_map_model_20200506.mnn in Resources */ = {isa = PBXBuildFile; fileRef = 04E1AB0C2CF6FF22000D2851 /* skin_map_model_20200506.mnn */; };
+		04E1AB2B2CF6FF22000D2851 /* skin_moisture_model_20200603.mnn in Resources */ = {isa = PBXBuildFile; fileRef = 04E1AB0D2CF6FF22000D2851 /* skin_moisture_model_20200603.mnn */; };
+		04E1AB2C2CF6FF22000D2851 /* skin_oiliness_model_20200616.mnn in Resources */ = {isa = PBXBuildFile; fileRef = 04E1AB0E2CF6FF22000D2851 /* skin_oiliness_model_20200616.mnn */; };
+		04E1AB2D2CF6FF22000D2851 /* skin_pore_model_20230410.mnn in Resources */ = {isa = PBXBuildFile; fileRef = 04E1AB0F2CF6FF22000D2851 /* skin_pore_model_20230410.mnn */; };
+		04E1AB2E2CF6FF22000D2851 /* skin_radiance_model_20210504.mnn in Resources */ = {isa = PBXBuildFile; fileRef = 04E1AB102CF6FF22000D2851 /* skin_radiance_model_20210504.mnn */; };
+		04E1AB2F2CF6FF22000D2851 /* skin_redness_model_20210129.mnn in Resources */ = {isa = PBXBuildFile; fileRef = 04E1AB112CF6FF22000D2851 /* skin_redness_model_20210129.mnn */; };
+		04E1AB302CF6FF22000D2851 /* skin_sag_contour_model_20200909.mnn in Resources */ = {isa = PBXBuildFile; fileRef = 04E1AB122CF6FF22000D2851 /* skin_sag_contour_model_20200909.mnn */; };
+		04E1AB312CF6FF22000D2851 /* skin_sag_eye_model_20200909.mnn in Resources */ = {isa = PBXBuildFile; fileRef = 04E1AB132CF6FF22000D2851 /* skin_sag_eye_model_20200909.mnn */; };
+		04E1AB322CF6FF22000D2851 /* skin_spot_model_20200518.mnn in Resources */ = {isa = PBXBuildFile; fileRef = 04E1AB142CF6FF22000D2851 /* skin_spot_model_20200518.mnn */; };
+		04E1AB332CF6FF22000D2851 /* skin_texture_model_20200122.mnn in Resources */ = {isa = PBXBuildFile; fileRef = 04E1AB152CF6FF22000D2851 /* skin_texture_model_20200122.mnn */; };
+		04E1AB342CF6FF22000D2851 /* skin_texture_stream_model_20200515.mnn in Resources */ = {isa = PBXBuildFile; fileRef = 04E1AB162CF6FF22000D2851 /* skin_texture_stream_model_20200515.mnn */; };
+		04E1AB352CF6FF22000D2851 /* skin_wrinkle_model_20210322.mnn in Resources */ = {isa = PBXBuildFile; fileRef = 04E1AB172CF6FF22000D2851 /* skin_wrinkle_model_20210322.mnn */; };
+		04E1AB362CF6FF22000D2851 /* skin_wrinkle_removal_model_20210427.mnn in Resources */ = {isa = PBXBuildFile; fileRef = 04E1AB182CF6FF22000D2851 /* skin_wrinkle_removal_model_20210427.mnn */; };
+		04E1AB372CF6FF22000D2851 /* uneven_lighting_net_20190808.bin in Resources */ = {isa = PBXBuildFile; fileRef = 04E1AB192CF6FF22000D2851 /* uneven_lighting_net_20190808.bin */; };
+		04E1AB382CF6FF22000D2851 /* YMK_Davinci_20200512_fp16.mnn in Resources */ = {isa = PBXBuildFile; fileRef = 04E1AB1A2CF6FF22000D2851 /* YMK_Davinci_20200512_fp16.mnn */; };
+		04E1AB392CF6FF22000D2851 /* YMK_Venus_20210709_fp16_alignmodel.mnn in Resources */ = {isa = PBXBuildFile; fileRef = 04E1AB1B2CF6FF22000D2851 /* YMK_Venus_20210709_fp16_alignmodel.mnn */; };
+		04E1AB402CF72373000D2851 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04E1AB3F2CF72373000D2851 /* Main.storyboard */; };
+		04E5CD292CF5A8D9006ED7DD /* PerfectLibWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5CD282CF5A8D9006ED7DD /* PerfectLibWrapper.swift */; };
+		04E5CD2B2CF5AA60006ED7DD /* PerfectLibSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5CD2A2CF5AA60006ED7DD /* PerfectLibSettings.swift */; };
+		04E5CD2D2CF5AAA2006ED7DD /* SynchronousTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5CD2C2CF5AAA2006ED7DD /* SynchronousTool.swift */; };
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
 		331C808B294A63AB00263BE5 /* RunnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C807B294A618700263BE5 /* RunnerTests.swift */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
 		74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74858FAE1ED2DC5600515810 /* AppDelegate.swift */; };
-		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
+		809E0150DF6111D2177D21F8 /* libPods-Runner.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 54BE84469A62F36A80F373E0 /* libPods-Runner.a */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -36,7 +90,11 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				0406BC892C9C3641003896A9 /* PerfectLibSkinCarePlus.framework in Embed Frameworks */,
+				040FAC5F2CF59B570087B97E /* PerfectLibCore.xcframework in Embed Frameworks */,
+				040FAC652CF59B570087B97E /* PerfectLibSkinCarePlus.xcframework in Embed Frameworks */,
+				040FAC632CF59B570087B97E /* PerfectLibRecommendationHandler.xcframework in Embed Frameworks */,
+				040FAC612CF59B570087B97E /* PerfectLibFaceTrackingPlus.xcframework in Embed Frameworks */,
+				040FAC5D2CF59B570087B97E /* PerfectLibHandlerCore.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -44,26 +102,77 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0406BC862C9C3634003896A9 /* PerfectLibSkinCarePlus.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PerfectLibSkinCarePlus.framework; path = "../../../Downloads/library 2/Frameworks/PerfectLibSkinCarePlus.xcframework/ios-arm64/PerfectLibSkinCarePlus.framework"; sourceTree = "<group>"; };
-		0FEBA2954EE30FCE56D51A87 /* Pods-Runner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"; sourceTree = "<group>"; };
+		040FAC562CF59B570087B97E /* PerfectLibHandlerCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = PerfectLibHandlerCore.xcframework; sourceTree = "<group>"; };
+		040FAC572CF59B570087B97E /* PerfectLibCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = PerfectLibCore.xcframework; sourceTree = "<group>"; };
+		040FAC582CF59B570087B97E /* PerfectLibFaceTrackingPlus.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = PerfectLibFaceTrackingPlus.xcframework; sourceTree = "<group>"; };
+		040FAC592CF59B570087B97E /* PerfectLibRecommendationHandler.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = PerfectLibRecommendationHandler.xcframework; sourceTree = "<group>"; };
+		040FAC5A2CF59B570087B97E /* PerfectLibSkinCarePlus.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = PerfectLibSkinCarePlus.xcframework; sourceTree = "<group>"; };
+		040FAC5B2CF59B570087B97E /* PerfectLibSkinCarePlus.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PerfectLibSkinCarePlus.framework; sourceTree = "<group>"; };
+		041CAF962CF86D310068C38F /* SkincareReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkincareReportViewController.swift; sourceTree = "<group>"; };
+		041CAF982CF86DC50068C38F /* PFRoundCornerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PFRoundCornerView.swift; sourceTree = "<group>"; };
+		041CAF992CF86DC50068C38F /* SettingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
+		041CAF9A2CF86DC50068C38F /* String+MD5.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+MD5.swift"; sourceTree = "<group>"; };
+		041CAF9B2CF86DC50068C38F /* UIImageView+Web.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Web.swift"; sourceTree = "<group>"; };
+		041CAFA12CF86E120068C38F /* SkinCareProductListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkinCareProductListViewController.swift; sourceTree = "<group>"; };
+		041CAFA22CF86E120068C38F /* SkincareSurveyFormView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkincareSurveyFormView.swift; sourceTree = "<group>"; };
+		041CAFA52CF87BF60068C38F /* MemoryUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryUtility.swift; sourceTree = "<group>"; };
+		041CAFA62CF87BF60068C38F /* SwiftExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftExtension.swift; sourceTree = "<group>"; };
+		041CAFA72CF87BF60068C38F /* UIImage+Resize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
+		041CAFAC2CF87C010068C38F /* SkinEmulationResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkinEmulationResultViewController.swift; sourceTree = "<group>"; };
+		041CAFAD2CF87C010068C38F /* SkinEmulationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkinEmulationViewController.swift; sourceTree = "<group>"; };
+		049C54B12CF8232A0085987D /* SkincareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkincareViewController.swift; sourceTree = "<group>"; };
+		04E1AAF52CF6D546000D2851 /* config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
+		04E1AAFF2CF6FF22000D2851 /* acne_20210507_blackhead.mnn */ = {isa = PBXFileReference; lastKnownFileType = file; path = acne_20210507_blackhead.mnn; sourceTree = "<group>"; };
+		04E1AB002CF6FF22000D2851 /* acne_20210507_inflammatory.mnn */ = {isa = PBXFileReference; lastKnownFileType = file; path = acne_20210507_inflammatory.mnn; sourceTree = "<group>"; };
+		04E1AB012CF6FF22000D2851 /* acne_20210507_whitehead.mnn */ = {isa = PBXFileReference; lastKnownFileType = file; path = acne_20210507_whitehead.mnn; sourceTree = "<group>"; };
+		04E1AB022CF6FF22000D2851 /* acne_exclude_hair_20210803.mnn */ = {isa = PBXFileReference; lastKnownFileType = file; path = acne_exclude_hair_20210803.mnn; sourceTree = "<group>"; };
+		04E1AB032CF6FF22000D2851 /* backlighting_net_20190808.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = backlighting_net_20190808.bin; sourceTree = "<group>"; };
+		04E1AB042CF6FF22000D2851 /* exposure_net_20190808.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = exposure_net_20190808.bin; sourceTree = "<group>"; };
+		04E1AB052CF6FF22000D2851 /* faceart_20180917.model */ = {isa = PBXFileReference; lastKnownFileType = file; path = faceart_20180917.model; sourceTree = "<group>"; };
+		04E1AB062CF6FF22000D2851 /* pose_20180530.mtnet */ = {isa = PBXFileReference; lastKnownFileType = file; path = pose_20180530.mtnet; sourceTree = "<group>"; };
+		04E1AB072CF6FF22000D2851 /* skin_age_model_20221209.mnn */ = {isa = PBXFileReference; lastKnownFileType = file; path = skin_age_model_20221209.mnn; sourceTree = "<group>"; };
+		04E1AB082CF6FF22000D2851 /* skin_age_spot_model_20200529.mnn */ = {isa = PBXFileReference; lastKnownFileType = file; path = skin_age_spot_model_20200529.mnn; sourceTree = "<group>"; };
+		04E1AB092CF6FF22000D2851 /* skin_dark_circle_model_20200308.mnn */ = {isa = PBXFileReference; lastKnownFileType = file; path = skin_dark_circle_model_20200308.mnn; sourceTree = "<group>"; };
+		04E1AB0A2CF6FF22000D2851 /* skin_dark_circle_v2_model_20210115.mnn */ = {isa = PBXFileReference; lastKnownFileType = file; path = skin_dark_circle_v2_model_20210115.mnn; sourceTree = "<group>"; };
+		04E1AB0B2CF6FF22000D2851 /* skin_eye_bag_model_20200617.mnn */ = {isa = PBXFileReference; lastKnownFileType = file; path = skin_eye_bag_model_20200617.mnn; sourceTree = "<group>"; };
+		04E1AB0C2CF6FF22000D2851 /* skin_map_model_20200506.mnn */ = {isa = PBXFileReference; lastKnownFileType = file; path = skin_map_model_20200506.mnn; sourceTree = "<group>"; };
+		04E1AB0D2CF6FF22000D2851 /* skin_moisture_model_20200603.mnn */ = {isa = PBXFileReference; lastKnownFileType = file; path = skin_moisture_model_20200603.mnn; sourceTree = "<group>"; };
+		04E1AB0E2CF6FF22000D2851 /* skin_oiliness_model_20200616.mnn */ = {isa = PBXFileReference; lastKnownFileType = file; path = skin_oiliness_model_20200616.mnn; sourceTree = "<group>"; };
+		04E1AB0F2CF6FF22000D2851 /* skin_pore_model_20230410.mnn */ = {isa = PBXFileReference; lastKnownFileType = file; path = skin_pore_model_20230410.mnn; sourceTree = "<group>"; };
+		04E1AB102CF6FF22000D2851 /* skin_radiance_model_20210504.mnn */ = {isa = PBXFileReference; lastKnownFileType = file; path = skin_radiance_model_20210504.mnn; sourceTree = "<group>"; };
+		04E1AB112CF6FF22000D2851 /* skin_redness_model_20210129.mnn */ = {isa = PBXFileReference; lastKnownFileType = file; path = skin_redness_model_20210129.mnn; sourceTree = "<group>"; };
+		04E1AB122CF6FF22000D2851 /* skin_sag_contour_model_20200909.mnn */ = {isa = PBXFileReference; lastKnownFileType = file; path = skin_sag_contour_model_20200909.mnn; sourceTree = "<group>"; };
+		04E1AB132CF6FF22000D2851 /* skin_sag_eye_model_20200909.mnn */ = {isa = PBXFileReference; lastKnownFileType = file; path = skin_sag_eye_model_20200909.mnn; sourceTree = "<group>"; };
+		04E1AB142CF6FF22000D2851 /* skin_spot_model_20200518.mnn */ = {isa = PBXFileReference; lastKnownFileType = file; path = skin_spot_model_20200518.mnn; sourceTree = "<group>"; };
+		04E1AB152CF6FF22000D2851 /* skin_texture_model_20200122.mnn */ = {isa = PBXFileReference; lastKnownFileType = file; path = skin_texture_model_20200122.mnn; sourceTree = "<group>"; };
+		04E1AB162CF6FF22000D2851 /* skin_texture_stream_model_20200515.mnn */ = {isa = PBXFileReference; lastKnownFileType = file; path = skin_texture_stream_model_20200515.mnn; sourceTree = "<group>"; };
+		04E1AB172CF6FF22000D2851 /* skin_wrinkle_model_20210322.mnn */ = {isa = PBXFileReference; lastKnownFileType = file; path = skin_wrinkle_model_20210322.mnn; sourceTree = "<group>"; };
+		04E1AB182CF6FF22000D2851 /* skin_wrinkle_removal_model_20210427.mnn */ = {isa = PBXFileReference; lastKnownFileType = file; path = skin_wrinkle_removal_model_20210427.mnn; sourceTree = "<group>"; };
+		04E1AB192CF6FF22000D2851 /* uneven_lighting_net_20190808.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = uneven_lighting_net_20190808.bin; sourceTree = "<group>"; };
+		04E1AB1A2CF6FF22000D2851 /* YMK_Davinci_20200512_fp16.mnn */ = {isa = PBXFileReference; lastKnownFileType = file; path = YMK_Davinci_20200512_fp16.mnn; sourceTree = "<group>"; };
+		04E1AB1B2CF6FF22000D2851 /* YMK_Venus_20210709_fp16_alignmodel.mnn */ = {isa = PBXFileReference; lastKnownFileType = file; path = YMK_Venus_20210709_fp16_alignmodel.mnn; sourceTree = "<group>"; };
+		04E1AB3F2CF72373000D2851 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		04E5CD282CF5A8D9006ED7DD /* PerfectLibWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfectLibWrapper.swift; sourceTree = "<group>"; };
+		04E5CD2A2CF5AA60006ED7DD /* PerfectLibSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfectLibSettings.swift; sourceTree = "<group>"; };
+		04E5CD2C2CF5AAA2006ED7DD /* SynchronousTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronousTool.swift; sourceTree = "<group>"; };
 		1498D2321E8E86230040F4C2 /* GeneratedPluginRegistrant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeneratedPluginRegistrant.h; sourceTree = "<group>"; };
 		1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedPluginRegistrant.m; sourceTree = "<group>"; };
 		331C807B294A618700263BE5 /* RunnerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunnerTests.swift; sourceTree = "<group>"; };
 		331C8081294A63A400263BE5 /* RunnerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RunnerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppFrameworkInfo.plist; path = Flutter/AppFrameworkInfo.plist; sourceTree = "<group>"; };
+		54BE84469A62F36A80F373E0 /* libPods-Runner.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Runner.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		623305A566FC55047B2F4AED /* Pods-Runner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"; sourceTree = "<group>"; };
+		6755C27CD0389E384AF4E6BE /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
 		74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Runner-Bridging-Header.h"; sourceTree = "<group>"; };
 		74858FAE1ED2DC5600515810 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7AFA3C8E1D35360C0083082E /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Release.xcconfig; path = Flutter/Release.xcconfig; sourceTree = "<group>"; };
-		82570E5E70887347DDAB6745 /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
 		9740EEB21CF90195004384FC /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Debug.xcconfig; path = Flutter/Debug.xcconfig; sourceTree = "<group>"; };
 		9740EEB31CF90195004384FC /* Generated.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Generated.xcconfig; path = Flutter/Generated.xcconfig; sourceTree = "<group>"; };
 		97C146EE1CF9000F007C117D /* Runner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Runner.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		97C146FB1CF9000F007C117D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		97C146FD1CF9000F007C117D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		97C147001CF9000F007C117D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		97C147021CF9000F007C117D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A5A4F83818195D05588C93E4 /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
-		BABDE90BAD289E51BF27F976 /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D600BBCE1E890F5E40E5BD02 /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,29 +180,92 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0406BC882C9C3641003896A9 /* PerfectLibSkinCarePlus.framework in Frameworks */,
-				045E7E532C9C27BD00D6CFD0 /* Pods_Runner.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FA0A6F4E318E88EF1828015D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				040FAC5E2CF59B570087B97E /* PerfectLibCore.xcframework in Frameworks */,
+				809E0150DF6111D2177D21F8 /* libPods-Runner.a in Frameworks */,
+				040FAC5C2CF59B570087B97E /* PerfectLibHandlerCore.xcframework in Frameworks */,
+				040FAC622CF59B570087B97E /* PerfectLibRecommendationHandler.xcframework in Frameworks */,
+				040FAC602CF59B570087B97E /* PerfectLibFaceTrackingPlus.xcframework in Frameworks */,
+				040FAC642CF59B570087B97E /* PerfectLibSkinCarePlus.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		11E0C7FC7EAF50DDCBE818C3 /* Pods */ = {
+		02EE41AC72E52676FC9974D5 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				A5A4F83818195D05588C93E4 /* Pods-Runner.debug.xcconfig */,
-				0FEBA2954EE30FCE56D51A87 /* Pods-Runner.release.xcconfig */,
-				82570E5E70887347DDAB6745 /* Pods-Runner.profile.xcconfig */,
+				D600BBCE1E890F5E40E5BD02 /* Pods-Runner.debug.xcconfig */,
+				623305A566FC55047B2F4AED /* Pods-Runner.release.xcconfig */,
+				6755C27CD0389E384AF4E6BE /* Pods-Runner.profile.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		041CAF9C2CF86DC50068C38F /* UI components */ = {
+			isa = PBXGroup;
+			children = (
+				041CAF982CF86DC50068C38F /* PFRoundCornerView.swift */,
+				041CAF992CF86DC50068C38F /* SettingTableViewCell.swift */,
+				041CAF9A2CF86DC50068C38F /* String+MD5.swift */,
+				041CAF9B2CF86DC50068C38F /* UIImageView+Web.swift */,
+			);
+			path = "UI components";
+			sourceTree = "<group>";
+		};
+		041CAFA82CF87BF60068C38F /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				041CAFA52CF87BF60068C38F /* MemoryUtility.swift */,
+				041CAFA62CF87BF60068C38F /* SwiftExtension.swift */,
+				041CAFA72CF87BF60068C38F /* UIImage+Resize.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		041CAFAE2CF87C010068C38F /* SKIN_EMULATION */ = {
+			isa = PBXGroup;
+			children = (
+				041CAFAC2CF87C010068C38F /* SkinEmulationResultViewController.swift */,
+				041CAFAD2CF87C010068C38F /* SkinEmulationViewController.swift */,
+			);
+			path = SKIN_EMULATION;
+			sourceTree = "<group>";
+		};
+		04E1AB1C2CF6FF22000D2851 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				04E1AAFF2CF6FF22000D2851 /* acne_20210507_blackhead.mnn */,
+				04E1AB002CF6FF22000D2851 /* acne_20210507_inflammatory.mnn */,
+				04E1AB012CF6FF22000D2851 /* acne_20210507_whitehead.mnn */,
+				04E1AB022CF6FF22000D2851 /* acne_exclude_hair_20210803.mnn */,
+				04E1AB032CF6FF22000D2851 /* backlighting_net_20190808.bin */,
+				04E1AB042CF6FF22000D2851 /* exposure_net_20190808.bin */,
+				04E1AB052CF6FF22000D2851 /* faceart_20180917.model */,
+				04E1AB062CF6FF22000D2851 /* pose_20180530.mtnet */,
+				04E1AB072CF6FF22000D2851 /* skin_age_model_20221209.mnn */,
+				04E1AB082CF6FF22000D2851 /* skin_age_spot_model_20200529.mnn */,
+				04E1AB092CF6FF22000D2851 /* skin_dark_circle_model_20200308.mnn */,
+				04E1AB0A2CF6FF22000D2851 /* skin_dark_circle_v2_model_20210115.mnn */,
+				04E1AB0B2CF6FF22000D2851 /* skin_eye_bag_model_20200617.mnn */,
+				04E1AB0C2CF6FF22000D2851 /* skin_map_model_20200506.mnn */,
+				04E1AB0D2CF6FF22000D2851 /* skin_moisture_model_20200603.mnn */,
+				04E1AB0E2CF6FF22000D2851 /* skin_oiliness_model_20200616.mnn */,
+				04E1AB0F2CF6FF22000D2851 /* skin_pore_model_20230410.mnn */,
+				04E1AB102CF6FF22000D2851 /* skin_radiance_model_20210504.mnn */,
+				04E1AB112CF6FF22000D2851 /* skin_redness_model_20210129.mnn */,
+				04E1AB122CF6FF22000D2851 /* skin_sag_contour_model_20200909.mnn */,
+				04E1AB132CF6FF22000D2851 /* skin_sag_eye_model_20200909.mnn */,
+				04E1AB142CF6FF22000D2851 /* skin_spot_model_20200518.mnn */,
+				04E1AB152CF6FF22000D2851 /* skin_texture_model_20200122.mnn */,
+				04E1AB162CF6FF22000D2851 /* skin_texture_stream_model_20200515.mnn */,
+				04E1AB172CF6FF22000D2851 /* skin_wrinkle_model_20210322.mnn */,
+				04E1AB182CF6FF22000D2851 /* skin_wrinkle_removal_model_20210427.mnn */,
+				04E1AB192CF6FF22000D2851 /* uneven_lighting_net_20190808.bin */,
+				04E1AB1A2CF6FF22000D2851 /* YMK_Davinci_20200512_fp16.mnn */,
+				04E1AB1B2CF6FF22000D2851 /* YMK_Venus_20210709_fp16_alignmodel.mnn */,
+			);
+			path = model;
 			sourceTree = "<group>";
 		};
 		331C8082294A63A400263BE5 /* RunnerTests */ = {
@@ -102,6 +274,20 @@
 				331C807B294A618700263BE5 /* RunnerTests.swift */,
 			);
 			path = RunnerTests;
+			sourceTree = "<group>";
+		};
+		35DE00404F0ADFE155AB52B0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				040FAC572CF59B570087B97E /* PerfectLibCore.xcframework */,
+				040FAC582CF59B570087B97E /* PerfectLibFaceTrackingPlus.xcframework */,
+				040FAC562CF59B570087B97E /* PerfectLibHandlerCore.xcframework */,
+				040FAC592CF59B570087B97E /* PerfectLibRecommendationHandler.xcframework */,
+				040FAC5B2CF59B570087B97E /* PerfectLibSkinCarePlus.framework */,
+				040FAC5A2CF59B570087B97E /* PerfectLibSkinCarePlus.xcframework */,
+				54BE84469A62F36A80F373E0 /* libPods-Runner.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		9740EEB11CF90186004384FC /* Flutter */ = {
@@ -122,8 +308,8 @@
 				97C146F01CF9000F007C117D /* Runner */,
 				97C146EF1CF9000F007C117D /* Products */,
 				331C8082294A63A400263BE5 /* RunnerTests */,
-				11E0C7FC7EAF50DDCBE818C3 /* Pods */,
-				DB693D8F2FF2819E380597CE /* Frameworks */,
+				02EE41AC72E52676FC9974D5 /* Pods */,
+				35DE00404F0ADFE155AB52B0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -139,25 +325,28 @@
 		97C146F01CF9000F007C117D /* Runner */ = {
 			isa = PBXGroup;
 			children = (
-				97C146FA1CF9000F007C117D /* Main.storyboard */,
+				04E1AB1C2CF6FF22000D2851 /* model */,
+				04E1AAF52CF6D546000D2851 /* config.json */,
 				97C146FD1CF9000F007C117D /* Assets.xcassets */,
+				04E1AB3F2CF72373000D2851 /* Main.storyboard */,
 				97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */,
 				97C147021CF9000F007C117D /* Info.plist */,
 				1498D2321E8E86230040F4C2 /* GeneratedPluginRegistrant.h */,
 				1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */,
 				74858FAE1ED2DC5600515810 /* AppDelegate.swift */,
 				74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */,
+				04E5CD282CF5A8D9006ED7DD /* PerfectLibWrapper.swift */,
+				04E5CD2A2CF5AA60006ED7DD /* PerfectLibSettings.swift */,
+				041CAFAE2CF87C010068C38F /* SKIN_EMULATION */,
+				041CAFA82CF87BF60068C38F /* Utility */,
+				041CAF9C2CF86DC50068C38F /* UI components */,
+				04E5CD2C2CF5AAA2006ED7DD /* SynchronousTool.swift */,
+				041CAF962CF86D310068C38F /* SkincareReportViewController.swift */,
+				041CAFA12CF86E120068C38F /* SkinCareProductListViewController.swift */,
+				041CAFA22CF86E120068C38F /* SkincareSurveyFormView.swift */,
+				049C54B12CF8232A0085987D /* SkincareViewController.swift */,
 			);
 			path = Runner;
-			sourceTree = "<group>";
-		};
-		DB693D8F2FF2819E380597CE /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				0406BC862C9C3634003896A9 /* PerfectLibSkinCarePlus.framework */,
-				BABDE90BAD289E51BF27F976 /* Pods_Runner.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -169,7 +358,6 @@
 			buildPhases = (
 				331C807D294A63A400263BE5 /* Sources */,
 				331C807F294A63A400263BE5 /* Resources */,
-				FA0A6F4E318E88EF1828015D /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -185,12 +373,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 97C147051CF9000F007C117D /* Build configuration list for PBXNativeTarget "Runner" */;
 			buildPhases = (
-				89844F8D01EA2689CC8A3AB4 /* [CP] Check Pods Manifest.lock */,
+				1AF394D362AC7F49D882486F /* [CP] Check Pods Manifest.lock */,
+				9705A1C41CF9048500538489 /* Embed Frameworks */,
 				9740EEB61CF901F6004384FC /* Run Script */,
 				97C146EA1CF9000F007C117D /* Sources */,
 				97C146EB1CF9000F007C117D /* Frameworks */,
 				97C146EC1CF9000F007C117D /* Resources */,
-				9705A1C41CF9048500538489 /* Embed Frameworks */,
 				3B06AD1E1E4923F5004D2608 /* Thin Binary */,
 			);
 			buildRules = (
@@ -255,31 +443,45 @@
 			files = (
 				97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */,
 				3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */,
+				04E1AB212CF6FF22000D2851 /* backlighting_net_20190808.bin in Resources */,
+				04E1AAF62CF6D546000D2851 /* config.json in Resources */,
+				04E1AB1F2CF6FF22000D2851 /* acne_20210507_whitehead.mnn in Resources */,
+				04E1AB352CF6FF22000D2851 /* skin_wrinkle_model_20210322.mnn in Resources */,
+				04E1AB292CF6FF22000D2851 /* skin_eye_bag_model_20200617.mnn in Resources */,
+				04E1AB2D2CF6FF22000D2851 /* skin_pore_model_20230410.mnn in Resources */,
+				04E1AB332CF6FF22000D2851 /* skin_texture_model_20200122.mnn in Resources */,
+				04E1AB2A2CF6FF22000D2851 /* skin_map_model_20200506.mnn in Resources */,
+				04E1AB1E2CF6FF22000D2851 /* acne_20210507_inflammatory.mnn in Resources */,
+				04E1AB252CF6FF22000D2851 /* skin_age_model_20221209.mnn in Resources */,
+				04E1AB362CF6FF22000D2851 /* skin_wrinkle_removal_model_20210427.mnn in Resources */,
+				04E1AB392CF6FF22000D2851 /* YMK_Venus_20210709_fp16_alignmodel.mnn in Resources */,
+				04E1AB2C2CF6FF22000D2851 /* skin_oiliness_model_20200616.mnn in Resources */,
+				04E1AB272CF6FF22000D2851 /* skin_dark_circle_model_20200308.mnn in Resources */,
+				04E1AB402CF72373000D2851 /* Main.storyboard in Resources */,
+				04E1AB2B2CF6FF22000D2851 /* skin_moisture_model_20200603.mnn in Resources */,
+				04E1AB2E2CF6FF22000D2851 /* skin_radiance_model_20210504.mnn in Resources */,
+				04E1AB322CF6FF22000D2851 /* skin_spot_model_20200518.mnn in Resources */,
+				04E1AB232CF6FF22000D2851 /* faceart_20180917.model in Resources */,
+				04E1AB1D2CF6FF22000D2851 /* acne_20210507_blackhead.mnn in Resources */,
 				97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */,
-				97C146FC1CF9000F007C117D /* Main.storyboard in Resources */,
+				04E1AB222CF6FF22000D2851 /* exposure_net_20190808.bin in Resources */,
+				04E1AB262CF6FF22000D2851 /* skin_age_spot_model_20200529.mnn in Resources */,
+				04E1AB282CF6FF22000D2851 /* skin_dark_circle_v2_model_20210115.mnn in Resources */,
+				04E1AB312CF6FF22000D2851 /* skin_sag_eye_model_20200909.mnn in Resources */,
+				04E1AB382CF6FF22000D2851 /* YMK_Davinci_20200512_fp16.mnn in Resources */,
+				04E1AB242CF6FF22000D2851 /* pose_20180530.mtnet in Resources */,
+				04E1AB202CF6FF22000D2851 /* acne_exclude_hair_20210803.mnn in Resources */,
+				04E1AB302CF6FF22000D2851 /* skin_sag_contour_model_20200909.mnn in Resources */,
+				04E1AB372CF6FF22000D2851 /* uneven_lighting_net_20190808.bin in Resources */,
+				04E1AB2F2CF6FF22000D2851 /* skin_redness_model_20210129.mnn in Resources */,
+				04E1AB342CF6FF22000D2851 /* skin_texture_stream_model_20200515.mnn in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3B06AD1E1E4923F5004D2608 /* Thin Binary */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}",
-			);
-			name = "Thin Binary";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" embed_and_thin";
-		};
-		89844F8D01EA2689CC8A3AB4 /* [CP] Check Pods Manifest.lock */ = {
+		1AF394D362AC7F49D882486F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -300,6 +502,22 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		3B06AD1E1E4923F5004D2608 /* Thin Binary */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}",
+			);
+			name = "Thin Binary";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" embed_and_thin";
 		};
 		9740EEB61CF901F6004384FC /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -331,8 +549,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				041CAFB02CF87C010068C38F /* SkinEmulationViewController.swift in Sources */,
+				041CAFAF2CF87C010068C38F /* SkinEmulationResultViewController.swift in Sources */,
+				04E5CD2B2CF5AA60006ED7DD /* PerfectLibSettings.swift in Sources */,
+				04E5CD2D2CF5AAA2006ED7DD /* SynchronousTool.swift in Sources */,
+				041CAFA32CF86E120068C38F /* SkinCareProductListViewController.swift in Sources */,
+				041CAF972CF86D310068C38F /* SkincareReportViewController.swift in Sources */,
+				041CAF9E2CF86DC50068C38F /* SettingTableViewCell.swift in Sources */,
+				049C54B22CF8232A0085987D /* SkincareViewController.swift in Sources */,
+				041CAF9D2CF86DC50068C38F /* PFRoundCornerView.swift in Sources */,
+				041CAFA42CF86E120068C38F /* SkincareSurveyFormView.swift in Sources */,
+				041CAFAA2CF87BF60068C38F /* SwiftExtension.swift in Sources */,
+				041CAFA02CF86DC50068C38F /* UIImageView+Web.swift in Sources */,
+				041CAFA92CF87BF60068C38F /* MemoryUtility.swift in Sources */,
 				74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */,
+				041CAF9F2CF86DC50068C38F /* String+MD5.swift in Sources */,
+				041CAFAB2CF87BF60068C38F /* UIImage+Resize.swift in Sources */,
 				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,
+				04E5CD292CF5A8D9006ED7DD /* PerfectLibWrapper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,14 +581,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		97C146FA1CF9000F007C117D /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				97C146FB1CF9000F007C117D /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -425,18 +651,20 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = 78XQ7DT2RX;
+				DEVELOPMENT_TEAM = NTZCCMBDXM;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = "\"/Users/mac/Downloads/library 2/Frameworks/PerfectLibSkinCarePlus.xcframework/ios-arm64/PerfectLibSkinCarePlus.framework\"";
-				HEADER_SEARCH_PATHS = "\"/Users/mac/Downloads/library 2/Frameworks/PerfectLibSkinCarePlus.xcframework/ios-arm64/PerfectLibSkinCarePlus.framework\"";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Runner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.skincareDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.perfectcorp.mcsdkapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Runner/Runner-Bridging-Header.h;\n\n\n\n\n";
+				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -607,18 +835,20 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = 78XQ7DT2RX;
+				DEVELOPMENT_TEAM = NTZCCMBDXM;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = "\"/Users/mac/Downloads/library 2/Frameworks/PerfectLibSkinCarePlus.xcframework/ios-arm64/PerfectLibSkinCarePlus.framework\"";
-				HEADER_SEARCH_PATHS = "\"/Users/mac/Downloads/library 2/Frameworks/PerfectLibSkinCarePlus.xcframework/ios-arm64/PerfectLibSkinCarePlus.framework\"";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Runner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.skincareDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.perfectcorp.mcsdkapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Runner/Runner-Bridging-Header.h;\n\n\n\n\n";
+				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -632,18 +862,20 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = 78XQ7DT2RX;
+				DEVELOPMENT_TEAM = NTZCCMBDXM;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = "\"/Users/mac/Downloads/library 2/Frameworks/PerfectLibSkinCarePlus.xcframework/ios-arm64/PerfectLibSkinCarePlus.framework\"";
-				HEADER_SEARCH_PATHS = "\"/Users/mac/Downloads/library 2/Frameworks/PerfectLibSkinCarePlus.xcframework/ios-arm64/PerfectLibSkinCarePlus.framework\"";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Runner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.skincareDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.perfectcorp.mcsdkapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Runner/Runner-Bridging-Header.h;\n\n\n\n\n";
+				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

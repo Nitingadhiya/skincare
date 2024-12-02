@@ -1,6 +1,0 @@
-framework module PerfectLibSkinCarePlus {
-  umbrella header "PerfectLibSkinCarePlus.h"
-  export *
-
-  module * { export * }
-}
