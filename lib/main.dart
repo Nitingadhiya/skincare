@@ -249,11 +249,14 @@ class _CameraViewState extends State<CameraView> {
                     ),
                     if (image != null) image!,
                     if (imagepath.isNotEmpty)
-                      Image.file(
-                        File(imagepath),
-                        height: 300,
-                        width: 300,
-                        fit: BoxFit.contain,
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(200),
+                        child: Image.file(
+                          File(imagepath),
+                          height: 300,
+                          width: 300,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                   ],
                 ),

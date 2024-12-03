@@ -705,12 +705,8 @@ extension AppDelegate : AVCapturePhotoCaptureDelegate
             if cameraPos == .front {
                 rotatedImage = rotatedImage.flipImage()!
             }
-           if let circularImage = cropImageToCircle(image: rotatedImage) {
-                         print("Circular image created successfully.")
-                         analyzeImage(image: rotatedImage, isLive: true)
-                     } else {
-                         print("Failed to create a circular image.")
-                     }
+              analyzeImage(image: rotatedImage, isLive: true)
+
         }
     }
 
