@@ -63,8 +63,9 @@ import CoreMotion
 
            if let controller = window?.rootViewController as? FlutterViewController {
                // Register the custom camera view factory
-               let factory = SkinCareCameraViewFactory()
-               controller.registrar(forPlugin: "skincare_camera_view")?.register(factory, withId: "skincare_camera_view")
+
+               let cameraViewFactory = CameraViewFactory()
+                 controller.registrar(forPlugin: "skincare_camera_view")?.register(cameraViewFactory, withId: "skincare_camera_view")
 
                let skincareChannel = FlutterMethodChannel(name: "skincare_camera", binaryMessenger: controller.binaryMessenger)
 
@@ -141,7 +142,7 @@ func openStoryboard() {
 
         // Once skincareView is initialized, call setupCameraAndPreview
 
-        setupCameraAndPreview()
+//        setupCameraAndPreview()
          viewDidLoad()
            currentState = .waitForCountDown
     }
@@ -309,7 +310,7 @@ func openStoryboard() {
                 SynchronousTool.asyncMainSafe { [weak self] in
                     guard let self = self else { return }
                     print("-----image ----",image)
-                    
+
                     if ((skinFeatureList?.isEmpty) != nil) {
                         let imagefile = self.saveImageToDocumentsDirectory(image:image, imageName:"allSkin")
                         self.allSkinImage = imagefile
@@ -353,13 +354,13 @@ func openStoryboard() {
                             }
                         }
                     }
-                 
-          
-                    
-                    
+
+
+
+
                                      // Optionally, you can set the image to an imageView or update the UI
                                      // self.imageView.image = image
-                                 
+
 //                    self.imageView.image = image
                 }
             }
@@ -375,13 +376,10 @@ func openStoryboard() {
         // Get the document directory path
         let fileManager = FileManager.default
         if let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first {
-            // Create the full file path using the image name
             let imagePath = documentsDirectory.appendingPathComponent("\(imageName).png")
 
-            // Convert the UIImage to PNG data
             if let imageData = image.pngData() {
                 do {
-                    // Write the data to the image file path
                     try imageData.write(to: imagePath)
                     print("Image saved at path: \(imagePath.path)")
                     return imagePath.path  // Return the path to the saved image
@@ -395,60 +393,57 @@ func openStoryboard() {
         return nil
     }
 
-    
+
     func fetchAndSendSkincareReports() {
        DispatchQueue.global().asyncAfter(deadline: .now() + 0.5) { [weak self] in
            self?.doLongOperation1 { [weak self] completion in
                guard let self = self, let skincare = self.skincare else { return }
                print("Report: Report")
                let features = skincare.availableFeatures
-               
+
                skincare.getReports(bySkinFeatures: features) { [weak self] reports in
                    guard let self = self else { return }
-                   
+
                    DispatchQueue.global().async {
-                       // Update reports and dictionary on background thread
                        self.skincareReports = reports
                        print("Report: \(reports)")
-                       
-                       // Reduce reports to a dictionary
+
                        self.skincareReportDict = reports.reduce([String: Int]()) { partialResult, data in
                            var result = partialResult
-                           result[data.feature] = Int(data.score) // Ensure this is a valid conversion
+                           result[data.feature] = Int(data.score)
                            return result
                        }
-                       
-                       DispatchQueue.main.async { // Switch to main thread for UI updates
-                           // Check if rootViewController is a UINavigationController
-                      
+
+                       DispatchQueue.main.async {
+
                            if let reportDict = self.skincareReportDict {
-                               self.selectedSkinFeatures = Array(reportDict.keys) // Extract keys from the unwrapped dictionary
+                               self.selectedSkinFeatures = Array(reportDict.keys)
                            } else {
                                print("skincareReportDict is nil")
                            }
-                           
+
                            print("view cdata",self.selectedSkinFeatures.count)
                            self.updateImage(imanensme: "", skinFeatureList: self.selectedSkinFeatures)
-                           
+
                            for (i, item) in self.selectedSkinFeatures.enumerated() {
                                self.updateImage(imanensme: item)
                            }
-                           
-                       
+
+
                        }
                    }
                }
            }
        }
    }
-    
+
     private func doLongOperation1(closure: @escaping (@escaping ()->Void)->Void) {
         SynchronousTool.asyncMainSafe { [weak self] in
             guard let self = self else { return }
-         
+
             closure({
                 SynchronousTool.asyncMainSafe {
-                
+
                 }
             })
         }
@@ -456,53 +451,43 @@ func openStoryboard() {
 
 
 
-    // Camera setup and preview
 func setupCameraAndPreview() {
     print("Setting up camera preview...")
 
-    // Check if skincareView is initialized
     guard let skincareView = self.skincareView else {
         fatalError("skincareView is not initialized")
     }
 
-    // Initialize session
     let session = AVCaptureSession()
-
-    // Begin camera session configuration
     session.beginConfiguration()
 
-    // Get the front camera device
     guard let input = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front) else {
         fatalError("Failed to get AVCaptureDevice")
     }
 
-    // Add the input to the session
     guard let deviceInput = try? AVCaptureDeviceInput(device: input) else {
         fatalError("Failed to create AVCaptureDeviceInput")
     }
+
     if session.canAddInput(deviceInput) {
         session.addInput(deviceInput)
     } else {
         fatalError("Cannot add input device to session")
     }
 
-    // Set up video output
     let output = AVCaptureVideoDataOutput()
     output.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_420YpCbCr8BiPlanarFullRange]
     output.alwaysDiscardsLateVideoFrames = false
 
-    // Set up delegate queue
     let queue = DispatchQueue(label: "com.example.cameraQueue")
     output.setSampleBufferDelegate(self, queue: queue)
 
-    // Add video output to session
     if session.canAddOutput(output) {
         session.addOutput(output)
     } else {
         fatalError("Cannot add output to session")
     }
 
-    // Set up photo output
     let photoOutput = AVCapturePhotoOutput()
     if session.canAddOutput(photoOutput) {
         session.addOutput(photoOutput)
@@ -512,20 +497,23 @@ func setupCameraAndPreview() {
         fatalError("Cannot add photo output to session")
     }
 
-    // Set session preset
     session.sessionPreset = .high
 
-    // Commit session configuration
     session.commitConfiguration()
-    print("Session configuration completed.")
 
-    // Set up preview layer for camera feed
     let previewLayer = AVCaptureVideoPreviewLayer(session: session)
-    previewLayer.frame = CGRect(x: 50, y: 100, width: 250, height: 250)
+
+    let previewWidth: CGFloat = 200
+    let previewHeight: CGFloat = 200
+
+    previewLayer.frame = CGRect(x: (skincareView.bounds.width - previewWidth) / 2,
+                                y: (skincareView.bounds.height - previewHeight) / 2,
+                                width: previewWidth,
+                                height: previewHeight)
 
     previewLayer.videoGravity = .resizeAspectFill
+    previewLayer.zPosition = -1
 
-    // Check if the previewLayer is correctly added to the skincareView
     if skincareView.layer.sublayers?.contains(previewLayer) == false {
         skincareView.layer.addSublayer(previewLayer)
         print("Preview layer added successfully.")
@@ -535,7 +523,6 @@ func setupCameraAndPreview() {
 
     self.previewLayer = previewLayer
 
-    // Start camera session on a background thread
     DispatchQueue.global(qos: .background).async {
         print("Starting camera session...")
         session.startRunning()
@@ -544,19 +531,12 @@ func setupCameraAndPreview() {
         }
     }
 
-    // Save session reference
     self.session = session
 }
-
-    private var countDownValue: Int = 3 { // 3 is the initial value
+    private var countDownValue: Int = 3 {
         didSet {
             SynchronousTool.asyncMainSafe { [weak self] in
                 guard let self = self else { return }
-//                self.countDownIndicator.text = "\(self.countDownValue)"
-//                self.countDownIndicator.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-//                UIView.animate(withDuration: 0.3) {
-//                    self.countDownIndicator.transform = CGAffineTransform.identity
-//                }
             }
         }
     }
@@ -585,7 +565,6 @@ func setupCameraAndPreview() {
                 }
                 print("-sdsd-----done",self.countDownValue)
                 if self.countDownValue == 0 {
-//                    self.countDownIndicator.isHidden = true
                     self.countDownTimer?.invalidate()
                     self.countDownTimer = nil
                     print("------done")
@@ -594,17 +573,11 @@ func setupCameraAndPreview() {
                 }
             }
         }
-    
-    
+
+
     private func capture() {
         currentState = .capturing
-//        self.captureFlashView.alpha = 0
-//        self.captureFlashView.isHidden = false
-//        UIView.animate(withDuration: 0.3, animations: {
-//            self.captureFlashView.alpha = 1
-//        }) { (_) in
-//            self.captureFlashView.isHidden = true
-//        }
+
         if let photoOutput = self.photoOutput {
             let setting = AVCapturePhotoSettings()
             setting.isHighResolutionPhotoEnabled = true
@@ -616,25 +589,21 @@ func setupCameraAndPreview() {
 
        private func startCountingDown() {
             currentState = .countingDown
-//            countDownIndicator.isHidden = false
             countDownValue = 3
             countDownTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timerMethod(timer:)), userInfo: nil, repeats: true)
         }
 
            private func stopCountingDown() {
-//                countDownIndicator.isHidden = true
                 countDownTimer?.invalidate()
                 countDownTimer = nil
                 currentState = .waitForCountDown
             }
 
 
-    // AVCaptureVideoDataOutputSampleBufferDelegate method for processing camera buffers
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         skincare?.sendCameraBuffer(sampleBuffer)
     }
-    
-    
+
     private func currentDeviceOrientation() -> UIDeviceOrientation {
         guard (UIDevice.current.orientation != .portrait && UIDevice.current.orientation != .portraitUpsideDown &&
                UIDevice.current.orientation != .landscapeRight && UIDevice.current.orientation != .landscapeLeft) else {
@@ -656,36 +625,12 @@ func setupCameraAndPreview() {
         case .portraitUpsideDown:
             return .portraitUpsideDown
         case .landscapeLeft:
-            // UIInterfaceOrientationLandscapeLeft is equal to UIDeviceOrientationLandscapeRight
             return .landscapeRight
         case .landscapeRight:
-            // UIInterfaceOrientationLandscapeRight is equal to UIDeviceOrientationLandscapeLeft
             return .landscapeLeft
         default:
             return .portrait
         }
-    }
-    
-}
-
-
-class SkinCareCameraViewFactory: NSObject, FlutterPlatformViewFactory {
-    func create(withFrame frame: CGRect, viewIdentifier viewId: Int64, arguments: Any?) -> FlutterPlatformView {
-        return SkinCareCameraView(frame: frame, viewId: viewId, arguments: arguments)
-    }
-}
-
-class SkinCareCameraView: NSObject, FlutterPlatformView {
-    private var _view: UIView
-
-    init(frame: CGRect, viewId: Int64, arguments: Any?) {
-        _view = UIView(frame: frame)
-        super.init()
-        // Set up your view (camera preview, etc.) here
-    }
-
-    func view() -> UIView {
-        return _view
     }
 }
 
@@ -696,16 +641,9 @@ class SkinCareCameraView: NSObject, FlutterPlatformView {
             SynchronousTool.asyncMainSafe { [weak self] in
                 guard let self = self, self.currentState != .capturing else { return }
                 print("----------view");
-//                self.lightingQuality.backgroundColor = checkedResult.lightingQuality.color
-//                self.faceFrontalQuality.backgroundColor = checkedResult.faceFrontalQuality.color
-//                self.faceAreaQuality.backgroundColor = checkedResult.faceAreaQuality.color
-//                self.lightingQualityMsg.text = checkedResult.lightingQuality.string
-//                self.faceAreaQualityMsg.text = checkedResult.faceAreaQuality.string
-//                let color = checkedResult.lightingQuality.color // Assuming it's a non-optional UIColor
                  let lightingQuality = checkedResult.lightingQuality.color.toHex()
                  let faceAreaQuality = checkedResult.faceAreaQuality.color.toHex()
                  let faceFrontalQuality = checkedResult.faceFrontalQuality.color.toHex()
- print("checkedResult Flutter: \(checkedResult.lightingQuality.color)")
                 if let flutterViewController = self.window?.rootViewController as? FlutterViewController {
                     let channel = FlutterMethodChannel(
                         name: "skincare_channel",
@@ -715,9 +653,9 @@ class SkinCareCameraView: NSObject, FlutterPlatformView {
                         "lightingQuality_color": lightingQuality,
                         "faceFrontalQuality_color": faceAreaQuality,
                         "faceAreaQuality_color": faceFrontalQuality,
-                        "lightingQuality": checkedResult.lightingQuality.string ?? "Lighting",
-                        "faceFrontalQuality": checkedResult.faceAreaQuality.string ?? "Face Frontal",
-                        "faceAreaQuality": checkedResult.faceFrontalQuality.string ?? "Face Area"
+                        "lightingQuality": checkedResult.lightingQuality.string,
+                        "faceFrontalQuality": checkedResult.faceAreaQuality.string,
+                        "faceAreaQuality": checkedResult.faceFrontalQuality.string
                     ]
                     channel.invokeMethod("updateSkincareData", arguments: arguments) { result in
                         // Optional: Handle the result from Flutter
@@ -732,16 +670,13 @@ class SkinCareCameraView: NSObject, FlutterPlatformView {
                 }
                if checkedResult.canCapture() {
                              if self.currentState == .waitForCountDown {
-                               
-                                 
+
+
                                  self.startCountingDown()
                              }
                          }
                          else {
                              if self.currentState == .countingDown {
-                                 print("checkedResult",checkedResult.lightingQuality.string)
-                                 print("checkedResult",checkedResult.faceFrontalQuality.string)
-                                 print("checkedResult",checkedResult.faceAreaQuality.string)
                                  self.stopCountingDown()
                              }
                          }
@@ -770,8 +705,163 @@ extension AppDelegate : AVCapturePhotoCaptureDelegate
             if cameraPos == .front {
                 rotatedImage = rotatedImage.flipImage()!
             }
-            print("----------------------")
-            analyzeImage(image: rotatedImage, isLive: true)
+           if let circularImage = cropImageToCircle(image: rotatedImage) {
+                         print("Circular image created successfully.")
+                         analyzeImage(image: rotatedImage, isLive: true)
+                     } else {
+                         print("Failed to create a circular image.")
+                     }
         }
     }
+
+
+       private func cropImageToCircle(image: UIImage) -> UIImage? {
+            // Determine the smallest dimension for cropping
+            let imageSize = min(image.size.width, image.size.height)
+            let squareRect = CGRect(x: (image.size.width - imageSize) / 2,
+                                    y: (image.size.height - imageSize) / 2,
+                                    width: imageSize,
+                                    height: imageSize)
+
+            // Crop the image to a square
+            guard let squareCGImage = image.cgImage?.cropping(to: squareRect) else { return nil }
+
+            // Create a circular mask
+            UIGraphicsBeginImageContextWithOptions(CGSize(width: imageSize, height: imageSize), false, 0)
+            let context = UIGraphicsGetCurrentContext()!
+            let rect = CGRect(x: 0, y: 0, width: imageSize, height: imageSize)
+
+            // Add a circular clipping path
+            context.addEllipse(in: rect)
+            context.clip()
+            UIImage(cgImage: squareCGImage).draw(in: rect)
+
+            // Retrieve the circular image
+            let circularImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+
+            return circularImage
+        }
+}
+
+class CameraViewFactory: NSObject, FlutterPlatformViewFactory {
+
+    func create(
+        withFrame frame: CGRect,
+        viewIdentifier viewId: Int64,
+        arguments args: Any?
+    ) -> FlutterPlatformView {
+        return CameraView(frame: frame)
+    }
+}
+
+
+class CameraView: NSObject, FlutterPlatformView {
+    private var _view: UIView
+    private var captureSession: AVCaptureSession!
+    private var previewLayer: AVCaptureVideoPreviewLayer!
+
+    init(frame: CGRect) {
+        self._view = UIView(frame: frame)
+        super.init()
+        DispatchQueue.main.asyncAfter(deadline: .now()+1, execute: {
+            self.setupCameraAndPreview()
+        })
+      
+    }
+
+    func view() -> UIView {
+        return self._view
+    }
+ let appDelegate = UIApplication.shared.delegate as! AppDelegate
+
+func setupCameraAndPreview() {
+    print("Setting up camera preview...")
+
+    guard let skincareView = self.appDelegate.skincareView else {
+        fatalError("skincareView is not initialized")
+    }
+
+    let session = AVCaptureSession()
+    session.beginConfiguration()
+
+    guard let input = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front) else {
+        fatalError("Failed to get AVCaptureDevice")
+    }
+
+    guard let deviceInput = try? AVCaptureDeviceInput(device: input) else {
+        fatalError("Failed to create AVCaptureDeviceInput")
+    }
+
+    if session.canAddInput(deviceInput) {
+        session.addInput(deviceInput)
+    } else {
+        fatalError("Cannot add input device to session")
+    }
+
+    let output = AVCaptureVideoDataOutput()
+    output.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_420YpCbCr8BiPlanarFullRange]
+    output.alwaysDiscardsLateVideoFrames = false
+
+    let queue = DispatchQueue(label: "com.example.cameraQueue")
+    output.setSampleBufferDelegate(self.appDelegate, queue: queue)
+
+    if session.canAddOutput(output) {
+        session.addOutput(output)
+    } else {
+        fatalError("Cannot add output to session")
+    }
+
+    // Set up photo output
+    let photoOutput = AVCapturePhotoOutput()
+    if session.canAddOutput(photoOutput) {
+        session.addOutput(photoOutput)
+        self.appDelegate.photoOutput = photoOutput
+        photoOutput.isHighResolutionCaptureEnabled = true
+    } else {
+        fatalError("Cannot add photo output to session")
+    }
+
+    // Set session preset
+    session.sessionPreset = .high
+
+    // Commit session configuration
+    session.commitConfiguration()
+
+    let previewLayer = AVCaptureVideoPreviewLayer(session: session)
+
+    // Set the frame of the preview layer within a specific area on your Flutter screen
+ previewLayer.frame = CGRect(x: 0,y: 0,width: 300,height: 300)
+    let previewSize = previewLayer.frame.size
+ let roundDiameter = min(previewSize.width, previewSize.height) // Ensure it's circular
+ previewLayer.cornerRadius = roundDiameter / 2
+
+ // Clip the preview layer to its bounds
+ previewLayer.masksToBounds = true
+
+    previewLayer.videoGravity = .resizeAspectFill
+    previewLayer.zPosition = -1
+
+    // Check if the previewLayer is correctly added to the skincareView
+    if skincareView.layer.sublayers?.contains(previewLayer) == false {
+        skincareView.layer.addSublayer(previewLayer)
+        print("Preview layer added successfully.")
+    } else {
+        print("Preview layer already exists.")
+    }
+     self._view.layer.addSublayer(previewLayer)
+    self.appDelegate.previewLayer = previewLayer
+
+    // Start camera session on a background thread
+    DispatchQueue.global(qos: .background).async {
+        print("Starting camera session...")
+        session.startRunning()
+        DispatchQueue.main.async {
+            print("Camera session started")
+        }
+    }
+
+    // Save session reference
+    self.appDelegate.session = session
+}
 }

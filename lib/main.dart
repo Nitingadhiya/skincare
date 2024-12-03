@@ -56,7 +56,6 @@ class _CameraViewState extends State<CameraView> {
   void _setupMethodChannel() {
     _channel.setMethodCallHandler((call) async {
       if (call.method == "updateSkincareData") {
-        // Receiving data from iOS
         final Map<dynamic, dynamic> result = call.arguments;
         setState(() {
           _skincareData = result.map((key, value) => MapEntry(key as String, value as String));
@@ -74,7 +73,6 @@ class _CameraViewState extends State<CameraView> {
         print("Received Skincare Report: $selectedImageList");
         final base64Image = call.arguments['imageBase64'];
         allSkinImage = call.arguments["allSkinImage"];
-        // Decode base64 image to display or save it
         final imageBytes = base64Decode(base64Image);
         image = Image.memory(
           Uint8List.fromList(imageBytes),
@@ -89,13 +87,13 @@ class _CameraViewState extends State<CameraView> {
             "image": "",
           };
         }).toList();
-        selectedImageList.entries.forEach((entry) {
+        for (var entry in selectedImageList.entries) {
           for (var e in skinDataList) {
             if (e["key"] == entry.key) {
-              e["image"] = entry.value; // Update the image
+              e["image"] = entry.value;
             }
           }
-        });
+        }
         countDin = null;
         setState(() {});
         // Get.back();
@@ -109,7 +107,7 @@ class _CameraViewState extends State<CameraView> {
   Color hexToColor(String hexString) {
     final buffer = StringBuffer();
     if (hexString.length == 6 || hexString.length == 7) {
-      buffer.write('ff'); // Add full opacity if missing
+      buffer.write('ff');
     }
     buffer.write(hexString.replaceFirst('#', ''));
     return Color(int.parse(buffer.toString(), radix: 16));
@@ -118,26 +116,22 @@ class _CameraViewState extends State<CameraView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Camera View")),
+      appBar: AppBar(title: const Text("Camera View"),backgroundColor: Colors.red,),
       body: Center(
         child: skinDataList.isEmpty
             ? Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Center(
-                    child: SizedBox(
-                      height: 200,
-                      width: 200,
-                      child: UiKitView(
-                        viewType: 'skincare_camera_view', // Registered in iOS native code
-                        onPlatformViewCreated: (int id) async {
-                          // Initialize the view using a method channel
-                          const channel = MethodChannel('skincare_camera');
-                          var data = await channel.invokeMethod('initializeView', {'viewId': id});
-                          print("-----${data}");
-                        },
-                      ),
+                  SizedBox(
+                    height: 300,
+                    width: 300,
+                    child: UiKitView(
+                      viewType: 'skincare_camera_view', // Registered in iOS native code
+                      onPlatformViewCreated: (int id) async {
+                        // Initialize the view using a method channel
+                        const channel = MethodChannel('skincare_camera');
+                        var data = await channel.invokeMethod('initializeView', {'viewId': id});
+                        print("-----${data}");
+                      },
                     ),
                   ),
                   if (countDin != null)
@@ -192,7 +186,7 @@ class _CameraViewState extends State<CameraView> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     SizedBox(
-                      height: 100, // Fixed height for the scrollable area
+                      height: 100,
                       child: SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child: Row(
@@ -206,19 +200,19 @@ class _CameraViewState extends State<CameraView> {
                                 margin: const EdgeInsets.symmetric(horizontal: 8.0),
                                 child: Container(
                                   padding: const EdgeInsets.all(16.0),
-                                  child: Column(
+                                  child: const Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      const Text("All", style: TextStyle(fontWeight: FontWeight.bold)),
-                                      const SizedBox(height: 8),
+                                      Text("All", style: TextStyle(fontWeight: FontWeight.bold)),
+                                      SizedBox(height: 8),
                                     ],
                                   ),
                                 ),
                               ),
                             ),
-                            // Wrap ListView.builder with a SizedBox for proper constraints
+
                             SizedBox(
-                              height: 100, // Match the height of the scrollable area
+                              height: 100,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal, // Horizontal ListView
                                 physics: const NeverScrollableScrollPhysics(),
